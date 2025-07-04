@@ -1,7 +1,10 @@
 import express from "express";
 import "dotenv/config";
+import { ENV } from "../config/env.js";
+import { connectDB } from "../config/db.js";
 const app = express();
-const PORT = process.env.PORT || 5001;
+connectDB();
+const { PORT } = ENV;
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send("welcome to backend");
