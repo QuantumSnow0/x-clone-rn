@@ -24,7 +24,7 @@ export const createComment = asyncHandler(async (req, res) => {
   if (!content || content.trim() === "") {
     return res.status(400).json({ error: "comment content is required" });
   }
-  const user = await User.findOne({ clertkId: userId });
+  const user = await User.findOne({ clerkId: userId });
   const post = await Post.findById(postId);
   if (!user || !post)
     return res.status(404).json({ error: "User ot post not found" });
@@ -55,8 +55,10 @@ export const deleteComment = asyncHandler(async (req, res) => {
   if (!user || !comment) {
     return res.status(404).json({ error: "user or comment not found" });
   }
-  if (Comment.user.toString() !== user._id.toString()) {
-    return res.status(403).json({ error: "you can delete yout own " });
+  if (comment.user.toString() !== user._id.toString()) {
+    return res
+      .status(403)
+      .json({ error: "you can only delete your own comments " });
   }
   await Post.findByIdAndUpdate(comment.post, {
     $pull: {
