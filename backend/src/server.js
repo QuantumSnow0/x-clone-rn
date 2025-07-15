@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(clerkMiddleware());
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   console.error("unhandled error:", err);
   res.status(500).json({ error: err.message || "internal server error" });
 });
