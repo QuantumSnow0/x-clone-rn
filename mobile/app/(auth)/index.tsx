@@ -34,7 +34,7 @@ export default function Index() {
               }}
             >
               {isLoading ? (
-                <ActivityIndicator size="35" color="blue" />
+                <ActivityIndicator size={35} color="blue" />
               ) : (
                 <View className="flex-row items-center justify-center">
                   <Image
@@ -61,7 +61,7 @@ export default function Index() {
               }}
             >
               {isLoading ? (
-                <ActivityIndicator size="35" color="blue" />
+                <ActivityIndicator size={35} color="blue" />
               ) : (
                 <View className="flex-row items-center justify-center">
                   <Image
